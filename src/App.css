@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
   text-align: center;
 }
@@ -37,3 +38,9 @@
     transform: translateY(0px);
   }
 }
+=======
+.app {
+    height: 100vh;
+    background-color: #000;
+}
+>>>>>>> e7a7532 (preReleaseWithoutStipe)
