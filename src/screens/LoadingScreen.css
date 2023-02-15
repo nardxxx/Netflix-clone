@@ -1,0 +1,10 @@
+.loadingScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.loadingScreen img {
+    height: 150px;
+}
