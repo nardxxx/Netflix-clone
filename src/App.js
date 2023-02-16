@@ -54,39 +54,37 @@ function App() {
       </header>
 =======
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-
 import './App.css';
-
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import LoadingScreen from './screens/LoadingScreen';
+
 
 import { auth } from './firebase';
-import { loading, login, logout, selectLoadingStatus, selectUser } from './features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout, selectUser } from './features/userSlice';
 
+import {
+  // BrowserRouter as Router,
+  HashRouter as Router,
+  Switch,
+  Route,
 
+} from "react-router-dom";
+import ProfileScreen from './screens/ProfileScreen';
 
 function App() {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  const user = useSelector(selectUser);
-  const loadingStatus = useSelector(selectLoadingStatus);
-
   useEffect(() => {
-    dispatch(loading(true));
-
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
       if (userAuth) {
-
         const { uid, email } = userAuth;
+
         dispatch(login({
           uid,
           email
-        }));
-
+        }))
       } else {
         // Logged out
         dispatch(logout());
@@ -97,26 +95,21 @@ function App() {
   }, [dispatch])
 
 
-  const renderContent = () => {
-    return !user ?
-      <LoginScreen /> :
-      <Switch>
-        <Route path='/profile'>
-          <ProfileScreen />
-        </Route>
-        <Route exact path="/">
-          <HomeScreen />
-        </Route>
-      </Switch>;
-  }
-
   return (
     <div className="app">
       <Router>
-        {
-          loadingStatus === false ?
-            renderContent() :
-            <LoadingScreen />
+        {!user ?
+          (<LoginScreen />)
+          : (
+            <Switch>
+              <Route path='/profile'>
+                <ProfileScreen />
+              </Route>
+              <Route exact path="/">
+                <HomeScreen />
+              </Route>
+            </Switch>
+          )
         }
       </Router>
 >>>>>>> e7a7532 (preReleaseWithoutStipe)
