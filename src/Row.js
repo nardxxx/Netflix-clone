@@ -6,7 +6,6 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
     const [movies, setMovie] = useState([])
 
     const base_url = "https://image.tmdb.org/t/p/original/";
-
     useEffect(() => {
         async function fetchData() {
             const request = await axios.get(fetchUrl);

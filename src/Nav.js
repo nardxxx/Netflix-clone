@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Nav.css'
 
-import './Requests.js'
+// import './Requests.js'
 
 const Nav = () => {
     const [show, handleShow] = useState(false);
