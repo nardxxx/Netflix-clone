@@ -42,6 +42,7 @@ function App() {
     return unsubscribe;
   }, [dispatch])
 
+
   const renderContent = () => {
     if (loadingStatus === true) { return <LoadingScreen /> }
     else return (

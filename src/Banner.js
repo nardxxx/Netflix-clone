@@ -10,7 +10,6 @@ const Banner = () => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     useEffect(() => {
-        console.log(requests.fetchTrending);
         async function fetchData() {
 
             const request = await axios
